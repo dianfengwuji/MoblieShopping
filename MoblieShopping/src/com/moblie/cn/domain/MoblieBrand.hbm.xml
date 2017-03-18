@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping >
+	<class name="com.moblie.cn.domain.MoblieBrand" table="mobliebrand">
+		<id name="brand_id" type="integer">
+		    <column name=" brand_id" />
+			<generator class="increment" />
+		</id>
+		<property name="brand_name" type="string" column="brand_name"/>
+		
+		<set name="moblieTypes" cascade="delete" inverse="true">
+			<key column="type_brand_id" />
+			<one-to-many class="com.moblie.cn.domain.MoblieType" />
+		</set>
+	</class>
+</hibernate-mapping>

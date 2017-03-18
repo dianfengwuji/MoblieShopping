@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping >
+	<class name="com.moblie.cn.domain.User" table="user">
+		<id name="user_id" type="integer">
+		    <column name="user_id" />
+			<generator class="native"/>
+		</id>
+		
+		<property name="user_name" type="string" column="user_name"/>
+		<property name="user_email" type="string" column="user_email"/>
+		<property name="user_pwd" type="string" column="user_pwd"/>
+		<property name="user_img" type="string" column="user_img"/>
+	</class>
+</hibernate-mapping>

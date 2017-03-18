@@ -1,0 +1,383 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+/*==============================*/
+#stion{
+	width: 100%;
+	display: block;
+	float: left;
+	padding-bottom: 5%;
+}
+#stion .panel-body {
+	padding: 0;
+	width: 100%;
+}
+
+.pqb_list {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.pqb_list>li {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 2.5%;
+}
+
+.pqb_list>li:after {
+	width: 90%;
+	height: 1px;
+	content: "";
+	display: block;
+	margin: 0 auto;
+	background-color: #9ccdde;
+}
+
+.panel-title>a {
+	display: block;
+	float: right;
+	transition: all 0.5s ease-in-out;
+	transform: rotate(0deg);
+}
+
+.panel-title>a.arotate {
+	transform: rotate(-180deg);
+}
+
+.panel-success .pqb_list>li:after {
+	background-color: #97db9c;
+}
+
+.panel-danger .pqb_list>li:after {
+	background-color: #dea1a1;
+}
+
+.pqb_list>li:last-child:after {
+	height: 0px;
+}
+
+.pqb_list>li>a {
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	font-size: 1em;
+	color: black;
+	margin-top: 2.5%;
+	margin-bottom: 2.5%;
+}
+
+.pqb_list>li>a:hover {
+	color: orangered;
+}
+
+.pqb_list>li:first-child>a {
+	padding: 1%;
+	font-size: 1.2em;
+}
+
+.pqb_list>li:first-child>a>span {
+	margin-right: 8px;
+	color: black;
+}
+
+.pqb_list>li:first-child>a:hover>span {
+	color: orangered;
+}
+
+.pqb_list>li>a>img {
+	max-width: 102px;
+	max-height: 36px;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.pqb_list>li>a>span {
+	margin-left: 2.5%;
+}
+
+.pqb_list>li.amolist>a,
+.pqb_list>li.amolist>a>span {
+	color: orangered;
+}
+
+.btnpanel{
+	margin-top: 2.5%;
+	border-radius: 5px 5px;
+	width: 100%;
+}
+
+/*==============推荐==================*/
+
+.navmo {
+	float: left;
+	width: 100%;
+	background-color: #f0f0f0;
+	border-radius: 5px 5px;
+}
+
+.navmo>li {
+	float: left;
+	width: 15%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+}
+
+.navmo>li:before {
+	float: left;
+	width: 1px;
+	height: 60%;
+	margin-top: 10%;
+	content: "";
+	display: block;
+	background-color: #cccccc;
+}
+
+.navmo>li:first-child:before {
+	width: 0px;
+}
+
+.navmo>li>a {
+	text-decoration: none;
+	color: black;
+	font-size: 1.05em;
+}
+
+.navmo>li>a>span {
+	font-size: 0.8em;
+	margin-left: 2px;
+}
+
+.navmo>li>a:hover {
+	color: orangered;
+}
+
+.navmo>li.anavmo>a,
+.navmo>li.anavmo>a>span {
+	color: orangered;
+}
+
+
+/*==============推荐列表===============*/
+
+.navmolist {
+	width: 100%;
+	float: left;
+}
+
+.navmolist a {
+	text-decoration: none;
+	display: block;
+	color: black;
+}
+
+.navmolist>li {
+	position: relative;
+	top: 5px;
+	width: 30%;
+	float: left;
+	margin-top: 2.5%;
+	padding-bottom: 5%;
+	text-align: center;
+	transition: all 0.5s ease-in-out;
+	margin-left: 5%;
+}
+
+.navmolist>li:first-child,
+.navmolist>li:nth-child(3n+1) {
+	margin-left: 0;
+}
+
+.navmolist>li:hover {
+	box-shadow: 0 5px 20px #999;
+	top: 0px;
+}
+
+.navmolist>li:hover>div:last-child {
+	bottom: 0px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.navmolist>li>div {
+	width: 100%;
+	margin-top: 3%;
+}
+
+.navmolist>li>div:first-child>a>img {
+	max-width: 200px;
+	max-height: 200px;
+	width: 100%;
+	height: 100%;
+}
+
+.navmolist>li>div:nth-child(2)>a:hover {
+	color: orangered;
+}
+
+.navmolist>li>p:nth-of-type(1) {
+	width: 90%;
+	margin: 0 auto;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.navmolist>li>p:nth-of-type(2) {
+	margin-top: 2.5%;
+	width: 100%;
+	color: orangered;
+}
+
+.navmolist>li>div:last-child {
+	position: absolute;
+	bottom: 90%;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	background-color: orangered;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s ease-in-out;
+}
+
+.navmolist_empty {
+	float: left;
+	width: 50%;
+}
+
+.navmolist_empty:before {
+	float: right;
+	width: 1px;
+	height: 25px;
+	margin-top: 7.5px;
+	content: "";
+	display: block;
+	background-color: white;
+}
+
+.navmolist_empty>a,
+.navmolist_cart>a {
+	color: white;
+	font-size: 1.1em;
+}
+
+.navmolist_empty:hover,
+.navmolist_cart:hover {
+	background-color: #ff0000;
+}
+
+.navmolist_cart {
+	float: left;
+	width: 50%;
+}
+
+
+.pagination{
+	width: 50%; 1px solid red;
+	float: left;margin-left: 36.5%;
+}
+
+/*===================改变=========================*/
+
+@media only screen and (max-width: 480px) {
+	#accordion>div:nth-child(2) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#accordion>div:first-child {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	#accordion div {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.navmolist>li {
+		width: 70%;
+		clear: both;
+		margin-left: 15%;
+		margin-top: 5%;
+	}
+	.navmolist>li:first-child,
+	.navmolist>li:nth-child(3n+1) {
+		margin-left: 15%;
+	}
+	.navmo>li {
+		width: 20%;
+	}
+	.panel-title {
+		margin-left: 10px;
+	}
+	.panel-title>a {
+		margin-right: 10px;
+	}
+	.panelist {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		left: -100%;
+		top: 0px;
+		padding-right: 10%;
+		padding-top: 5%;
+		background-color: rgba(102, 102, 102, 0.6);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s ease-in-out;
+	}
+	
+	.panelist_left{
+		left: 0%;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.navmolist>li {
+		width: 47.5%;
+		margin-left: 0;
+		margin-top: 5%;
+	}
+	.navmolist>li:nth-child(2n+1),{
+		float: left;
+		margin-left: 0;
+	}
+	
+	.navmolist>li:nth-child(2n){
+		float: right;
+	}
+	
+	.panelist {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		left: -100%;
+		top: 0px;
+		padding-right: 30%;
+		padding-top: 5%;
+		background-color: rgba(102, 102, 102, 0.6);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.5s ease-in-out;
+	}
+	
+	.panelist_left{
+		left: 0%;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 969px) {
+	
+}
+
+@media only screen and (min-width:970px) and (max-width:1200px) {
+	
+}

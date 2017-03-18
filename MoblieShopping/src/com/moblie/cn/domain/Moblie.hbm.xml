@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+<hibernate-mapping>
+	<class name="com.moblie.cn.domain.Moblie" table="moblie">
+		<id name="moblie_id" type="integer">
+			 <column name="moblie_id" />
+			 <generator class="increment" />
+		</id>
+		<property name="moblie_name" type="string" column="moblie_name"/>
+		<property name="moblie_price" type="double" column="moblie_price"/>
+		<property name="moblie_img" type="string" column="moblie_img"/>
+		<property name="moblie_jieshao" type="string" column="moblie_jieshao"/>
+		<property name="moblie_news" type="integer" column="moblie_news"/>
+		
+		<many-to-one name="moblieType" column="moblie_type_id" class="com.moblie.cn.domain.MoblieType"/>
+	</class>
+</hibernate-mapping>

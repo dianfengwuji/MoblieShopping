@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping >
+	<class name="com.moblie.cn.domain.Banner" table="banner">
+		<id name="banner_id" type="integer">
+		    <column name="banner_id" />
+			<generator class="native"/>
+		</id>
+		
+		<property name="banner_name" type="string" column="banner_name"/>
+		<property name="banner_img" type="string" column="banner_img"/>
+		<property name="banner_url" type="string" column="banner_url"/>
+		<property name="banner_date" column="banner_date"/>
+	</class>
+</hibernate-mapping>

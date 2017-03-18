@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8">
+	</constant>
+	<!-- 通过拦截器来限制上传图片的类型和大小 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.multipart.maxSize" value="2073741824" />
+
+	<package name="default_home" namespace="/home" extends="struts-default">
+		<!-- <action name="admin_*" class="adminAction" method="{1}"> <result name="errorlogin" 
+			type="redirect">login.jsp</result> <result name="adminlogin" type="redirect">index.jsp</result> 
+			</action> -->
+
+		<action name="moblieBrand_*" class="moblieBrandAction" method="{1}">
+			<result name="findBrandAll">moblieBrand_list.jsp</result>
+			<result name="add">moblieBrand_add.jsp</result>
+			<result name="errorBrand" type="redirect">moblieBrand_add.jsp</result>
+			<result name="editSuccess">moblieBrand_update.jsp</result>
+			<result name="updateSuccess" type="redirectAction">moblieBrand_findAllMoblieBrand.action
+			</result>
+			<result name="addSuccess" type="redirectAction">moblieBrand_findAllMoblieBrand.action
+			</result>
+			<result name="deleteBrandSuccess" type="redirectAction">moblieBrand_findAllMoblieBrand.action
+			</result>
+		</action>
+
+		<action name="moblieType_*" class="moblieTypeAction" method="{1}">
+			<result name="findTypeAll">moblieType_list.jsp</result>
+			<result name="add">moblieType_add.jsp</result>
+			<result name="errorType" type="redirect">moblieType_add.jsp
+			</result>
+			<result name="editSuccess">moblieType_update.jsp</result>
+			<result name="findAllBrand">/home/moblieType_add.jsp</result>
+			<result name="updateSuccess" type="redirectAction">moblieType_findAllMoblieType.action
+			</result>
+			<result name="addSuccess" type="redirectAction">moblieType_findAllMoblieType.action
+			</result>
+			<result name="deleteSuccess" type="redirectAction">moblieType_findAllMoblieType.action
+			</result>
+		</action>
+
+		<action name="moblie_*" class="moblieAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+				<!-- 配置允许上传的文件类型，多个用","分隔 -->
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/x-png,image/pjpeg</param>
+				<!-- 配置允许上传的文件大小，单位字节 -->
+				<param name="maximumSize">102400</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="findAll">moblie_list.jsp</result>
+			<result name="add">moblie_add.jsp</result>
+			<result name="input">moblie_add.jsp</result>
+			<result name="addMoblieSuccess" type="redirectAction">moblie_findAllMoblie.action
+			</result>
+			<result name="deleteSuccess" type="redirectAction">moblie_findAllMoblie.action
+			</result>
+			<result name="update">moblie_update.jsp</result>
+			<result name="updateSuccess" type="redirectAction">moblie_findAllMoblie.action
+			</result>
+		</action>
+
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success">user_add.jsp</result>
+			<result name="addUserSuccess" type="redirect">user_list.jsp</result>
+			<result name="findAll">user_list.jsp</result>
+			<result name="deleteUserSuccess" type="redirectAction">user_findAllUser.action
+			</result>
+			<result name="updateUser">user_update.jsp</result>
+			<result name="editSuccess" type="redirectAction">user_findAllUser.action
+			</result>
+			<result name="findName">user_list.jsp</result>
+		</action>
+
+		<action name="user_removeUser" class="userAction" method="removeUser">
+			<result name="remove">index.jsp</result>
+		</action>
+	</package>
+
+	<package name="json_home" extends="json-default" namespace="/home">
+		<action name="admin_*" class="adminAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="json" extends="json-default" namespace="/">
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+
+			<result name="info" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="moblielist_*" class="moblieAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">list</param>
+			</result>
+
+			<result name="info" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="banner_*" class="bannerAction" method="{1}">
+		     <result name="success" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+		
+		<action name="advert_*" class="advertAction" method="{1}">
+		     <result name="success" type="json">
+				<param name="root">list</param>
+			</result>
+		</action>
+	</package>
+
+</struts>
+

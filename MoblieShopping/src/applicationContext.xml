@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="no" default-lazy-init="false"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- 引用外部文件 -->
+<!-- 	<context:property-placeholder location="classpath:jdbc.properties" /> -->
+
+	<bean id="dataSource" destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!--连接数据库的驱动类 -->
+	    <property name="driverClass" value="com.mysql.jdbc.Driver" /> 
+		<!--连接数据库的url -->
+	    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/moblie?useUnicode=true&amp;characterEncoding=utf-8"/> 
+		<!--连接数据库的用户名 -->
+		 <property name="user" value="root" />
+		<!--连接数据库的密码 -->
+		<property name="password" value="root" /> 
+
+<!-- 		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" /> -->
+
+	</bean>
+
+	<!-- 配置Hibernate的相关属性 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+
+		<property name="mappingResources">
+			<!-- 注册hibernate中的映射文件 -->
+			<list>
+				<value>com/moblie/cn/domain/Admin.hbm.xml</value>
+				<value>com/moblie/cn/domain/Banner.hbm.xml</value>
+				<value>com/moblie/cn/domain/Moblie.hbm.xml</value>
+				<value>com/moblie/cn/domain/MoblieBrand.hbm.xml</value>
+				<value>com/moblie/cn/domain/MoblieType.hbm.xml</value>
+				<value>com/moblie/cn/domain/User.hbm.xml</value>
+				<value>com/moblie/cn/domain/Advert.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="myTxManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<aop:config>
+		<aop:pointcut id="productServiceMethods"
+			expression="execution(* com.moblie.cn.service..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="productServiceMethods" />
+	</aop:config>
+
+	<tx:advice id="txAdvice" transaction-manager="myTxManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+
+
+
+	<!-- 以下的就是spring与struts2整合 -->
+
+	<!-- dao -->
+	<bean id="adminDaoImpl" class="com.moblie.cn.dao.impl.AdminDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="moblieBrandDaoImpl" class="com.moblie.cn.dao.impl.MoblieBrandDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="moblieTypeDaoImpl" class="com.moblie.cn.dao.impl.MoblieTypeDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="moblieDaoImpl" class="com.moblie.cn.dao.impl.MoblieDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userDaoImpl" class="com.moblie.cn.dao.impl.UserDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="bannerDaoImpl" class="com.moblie.cn.dao.impl.BannerDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="advertDaoImpl" class="com.moblie.cn.dao.impl.AdvertDaoImpl"
+		scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- service -->
+
+	<bean id="adminServiceImpl" class="com.moblie.cn.service.impl.AdminServiceImpl"
+		scope="prototype">
+		<property name="adminDao" ref="adminDaoImpl" />
+	</bean>
+
+	<bean id="moblieBrandServiceImpl" class="com.moblie.cn.service.impl.MoblieBrandServiceImpl"
+		scope="prototype">
+		<property name="moblieBrandDao" ref="moblieBrandDaoImpl" />
+	</bean>
+	
+	<bean id="moblieTypeServiceImpl" class="com.moblie.cn.service.impl.MoblieTypeServiceImpl"
+		scope="prototype">
+		<property name="moblieTypeDao" ref="moblieTypeDaoImpl" />
+	</bean>
+
+	<bean id="moblieServiceImpl" class="com.moblie.cn.service.impl.MoblieServiceImpl"
+		scope="prototype">
+		<property name="moblieDao" ref="moblieDaoImpl" />
+	</bean>
+	
+	<bean id="userServiceImpl" class="com.moblie.cn.service.impl.UserServiceImpl"
+		scope="prototype">
+		<property name="userDao" ref="userDaoImpl" />
+	</bean>
+	
+	<bean id="bannerServiceImpl" class="com.moblie.cn.service.impl.BannerServiceImpl"
+		scope="prototype">
+		<property name="bannerDao" ref="bannerDaoImpl" />
+	</bean>
+	
+	<bean id="advertServiceImpl" class="com.moblie.cn.service.impl.AdvertServiceImpl"
+		scope="prototype">
+		<property name="advertDao" ref="advertDaoImpl" />
+	</bean>
+
+	<!--所有action对象，注意action需要注入service -->
+
+
+	<bean id="adminAction" class="com.moblie.cn.action.AdminAction"
+		scope="prototype">
+		<property name="adminService" ref="adminServiceImpl" />
+	</bean>
+
+	<bean id="moblieBrandAction" class="com.moblie.cn.action.MoblieBrandAction"
+		scope="prototype">
+		<property name="moblieBrandService" ref="moblieBrandServiceImpl" />
+	</bean>
+	
+	<bean id="moblieTypeAction" class="com.moblie.cn.action.MoblieTypeAction"
+		scope="prototype">
+		<property name="moblieTypeService" ref="moblieTypeServiceImpl" />
+		<property name="moblieBrandService" ref="moblieBrandServiceImpl" />
+	</bean>
+
+	<bean id="moblieAction" class="com.moblie.cn.action.MoblieAction"
+		scope="prototype">
+		<property name="moblieService" ref="moblieServiceImpl" />
+		<property name="moblieTypeService" ref="moblieTypeServiceImpl" />
+	</bean>
+	
+	<bean id="userAction" class="com.moblie.cn.action.UserAction"
+		scope="prototype">
+		<property name="userService" ref="userServiceImpl" />
+	</bean>
+     
+     <bean id="bannerAction" class="com.moblie.cn.action.BannerAction"
+		scope="prototype">
+		<property name="bannerService" ref="bannerServiceImpl" />
+	</bean>
+	
+	 <bean id="advertAction" class="com.moblie.cn.action.AdvertAction"
+		scope="prototype">
+		<property name="advertService" ref="advertServiceImpl" />
+	</bean>
+	
+</beans>
+
+
+
+
+

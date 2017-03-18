@@ -1,0 +1,191 @@
+﻿@charset "utf-8";
+
+/* CSS Document */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "微软雅黑";
+}
+
+hr {
+	width: 100%;
+	border: 1px dashed #c6c6c6;
+}
+
+
+/* class */
+
+.sec {
+	background: url("../images/register_bg.png") no-repeat;
+	background-position: right;
+	z-index: -1;
+	padding-bottom: 5%;
+}
+
+.lab {
+	line-height: 40px;
+	text-align: right;
+}
+
+.zc {
+	text-align: center;
+}
+
+.group {
+	margin: 5px;
+}
+
+.forml {
+	height: 40px;
+}
+
+.cb {
+	line-height: 40px;
+}
+
+
+/*=================高中低======================*/
+
+.div2,
+.div4,
+.div6 {
+	position: relative;
+	background-color: #efefef;
+	border: 4px solid #cbcbcb;
+	float: left;
+	width: 82px;
+	height: 24px;
+	border-radius: 14px;
+}
+
+.div2 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.div4,
+.div6 {
+	margin: 5px;
+}
+
+.div3,
+.div5,
+.div7 {
+	animation: my 0.5s ease-in-out 1 forwards;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 16px;
+	border-radius: 10px;
+	z-index: 1;
+}
+
+.div3 {
+	-webkit-box-shadow: 0px 10px 20px rgba(17, 216, 0, 0.6);
+	box-shadow: 0px 10px 20px rgba(17, 216, 0, 0.6);
+	background-color: #11d800;
+}
+
+.div5 {
+	-webkit-box-shadow: 0px 10px 20px rgba(255, 165, 0, 0.6);
+	box-shadow: 0px 10px 20px rgba(255, 165, 0, 0.6);
+	background-color: #ffa500;
+}
+
+.div7 {
+	-webkit-box-shadow: 0px 10px 20px rgba(0, 157, 255, 0.6);
+	box-shadow: 0px 10px 20px rgba(0, 157, 255, 0.6);
+	background-color: #009dff;
+}
+
+#passstrength {
+	position: absolute;
+	width: 71px;
+	height: 16px;
+	line-height: 16px;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	z-index: 3;
+}
+
+
+/*=================高中低======================*/
+
+
+/*=================检查======================*/
+
+input.error {
+	border: 1px solid red;
+}
+
+.info {
+	height: 40px;
+}
+
+.info p {
+	line-height: 40px;
+}
+
+.error {
+	color: red;
+}
+
+.checked {
+	color: #0076ff;
+}
+
+
+/*=================检查======================*/
+
+
+/*  id*/
+
+#cbox {
+	height: 20px;
+}
+
+@keyframes my {
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+
+/*===================改变=========================*/
+
+@media only screen and (max-width: 480px) {
+	.sec {
+		width: 100%;
+		background: url("../images/bg04.jpg") no-repeat;
+		background-position: bottom;
+		background-color: #fffaf4;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	.sec {
+		width: 100%;
+		background: url("../images/bg03.jpg") no-repeat;
+		background-position: center;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 969px) {
+	.sec {
+		width: 100%;
+		background: url("../images/bg03.jpg") no-repeat;
+		background-position: center;
+		border: 1px solid red;
+	}
+}
+
+@media only screen and (min-width:970px) and (max-width:1200px) {}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping >
+	<class name="com.moblie.cn.domain.Advert" table="advert">
+		<id name="advert_id" type="integer">
+		    <column name="advert_id" />
+			<generator class="native"/>
+		</id>
+		
+		<property name="advert_name" type="string" column="advert_name"/>
+		<property name="advert_img" type="string" column="advert_img"/>
+		<property name="advert_url" type="string" column="advert_url"/>
+		<property name="advert_date" column="advert_date"/>
+	</class>
+</hibernate-mapping>
